@@ -2,35 +2,34 @@ import {ComponentPropsWithoutRef} from 'react';
 import Link from 'next/link';
 import {
   SidebarGroup,
-  SidebarGroupContent,
+  SidebarGroupContent, SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import {LuHouse, LuLayoutGrid} from 'react-icons/lu';
+import {LuMegaphone, LuUsers} from 'react-icons/lu';
 
-const primaryNav = [
+const adminNav = [
   {
-    title: "Home",
-    url: "/",
-    icon: LuHouse,
+    title: "Campaigns",
+    url: "/campaigns",
+    icon: LuMegaphone,
   },
   {
-    title: "Programs",
-    url: "/programs",
-    icon: LuLayoutGrid,
+    title: "Users",
+    url: "/users",
+    icon: LuUsers,
   },
 ];
 
-
-export function NavPrimary({path, ...props}: { path: string }
+export function NavAdmin({ path, ...props }: { path: string }
   & ComponentPropsWithoutRef<typeof SidebarGroup>) {
   return (
     <SidebarGroup {...props}>
       <SidebarGroupContent>
+        <SidebarGroupLabel>Admin</SidebarGroupLabel>
         <SidebarMenu>
-          {primaryNav.map((item) => {
-            return (
+          {adminNav.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild size="lg" className={path.split("/")[1] === item.url.split("/")[1] ? "text-primary" : ""}>
                 <Link href={item.url}>
@@ -39,7 +38,7 @@ export function NavPrimary({path, ...props}: { path: string }
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
-            )})}
+          ))}
         </SidebarMenu>
       </SidebarGroupContent>
     </SidebarGroup>

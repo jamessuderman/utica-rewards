@@ -1,9 +1,6 @@
 "use client"
 
-import * as React from "react"
-import { MdHome, MdSettings, MdSend, MdSupport } from "react-icons/md";
-import {LuHouse, LuSettings, LuLifeBuoy, LuSend} from 'react-icons/lu';
-
+import {ComponentProps} from 'react';
 import { NavUser } from "@/components/sidebar/nav-user"
 import {
   Sidebar,
@@ -13,49 +10,22 @@ import {
 } from "@/components/ui/sidebar"
 import {NavSecondary} from '@/components/sidebar/nav-secondary';
 import {NavPrimary} from '@/components/sidebar/nav-primary';
+import {NavAdmin} from '@/components/sidebar/nav-admin';
+import {usePathname} from 'next/navigation';
+import {userData} from '@/data/mockData';
 
-// This is sample data.
-const data = {
-  user: {
-    name: "James Suderman",
-    email: "james.suderman@uticanational.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  navMain: [
-    {
-      title: "Home",
-      url: "/",
-      icon: LuHouse,
-    },
-    {
-      title: "Settings",
-      url: "/settings",
-      icon: LuSettings,
-    },
-  ],
-  navSecondary: [
-    {
-        title: "Support",
-        url: "#",
-        icon: LuLifeBuoy,
-    },
-    {
-        title: "Feedback",
-        url: "#",
-        icon: LuSend,
-    },
-  ],
-}
+export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
+  const path: string = usePathname();
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarContent className="mt-16">
-        <NavPrimary items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavPrimary path={path} />
+        <NavAdmin path={path} />
+        <NavSecondary className="mt-auto" path={path} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={userData[0]} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

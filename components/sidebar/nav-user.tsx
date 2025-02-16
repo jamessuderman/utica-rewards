@@ -1,6 +1,6 @@
 "use client"
 
-import {LuBadgeCheck, LuBell, LuChevronsUpDown, LuCreditCard, LuLogOut, LuSparkles} from 'react-icons/lu';
+import {LuBadgeCheck, LuBell, LuChevronsUpDown, LuCreditCard, LuLogOut} from 'react-icons/lu';
 
 import {
   Avatar,
@@ -22,19 +22,17 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-export function NavUser({
-  user,
-}: {
+export function NavUser({ user }: {
   user: {
     name: string
     email: string
     avatar: string
   }
 }) {
-  const { isMobile } = useSidebar()
+  const {isMobile} = useSidebar()
 
   const names = user.name.split(" ");
-  const initials = names[0].charAt(0).toUpperCase() +  names[1].charAt(0).toUpperCase();
+  const initials = names[0].charAt(0).toUpperCase() + names[1].charAt(0).toUpperCase();
 
   return (
     <SidebarMenu>
@@ -46,14 +44,14 @@ export function NavUser({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarImage src={user.avatar} alt={user.name}/>
                 <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">{user.name}</span>
                 <span className="truncate text-xs">{user.email}</span>
               </div>
-              <LuChevronsUpDown className="ml-auto size-4" />
+              <LuChevronsUpDown className="ml-auto size-4"/>
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -64,28 +62,21 @@ export function NavUser({
           >
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <LuSparkles />
-                Upgrade to Pro
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <LuBadgeCheck />
+                <LuBadgeCheck/>
                 Account
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <LuCreditCard />
+                <LuCreditCard/>
                 Billing
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <LuBell />
+                <LuBell/>
                 Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator/>
             <DropdownMenuItem>
-              <LuLogOut />
+              <LuLogOut/>
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
