@@ -5,7 +5,7 @@ import {RefObject, useRef, useState} from 'react';
 import Image from 'next/image';
 
 export default function ImagePicker({label, name}: { label: string, name: string }) {
-  const [selectedImage, setSelectedImage] = useState<string | ArrayBuffer>();
+  const [selectedImage, setSelectedImage] = useState<string>();
   const imageSelect: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null);
 
   function handleImageSelect() {
@@ -20,7 +20,7 @@ export default function ImagePicker({label, name}: { label: string, name: string
     const fileReader = new FileReader()
 
     fileReader.onload = () => {
-      setSelectedImage(fileReader.result);
+      setSelectedImage(fileReader.result.toString());
     };
 
     fileReader.readAsDataURL(file);

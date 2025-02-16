@@ -13,21 +13,9 @@ import {Label} from '@/components/ui/label';
 import {Input} from '@/components/ui/input';
 import {Textarea} from '@/components/ui/textarea';
 import ImagePicker from '@/components/image-picker';
+import {createProgram} from '@/lib/actions';
 
 export default function ProgramLayout({children}: { children: ReactNode }) {
-  async function createProgram(formData: FormData) {
-    "use server";
-
-    const program = {
-      title: formData.get('title'),
-      description: formData.get('description'),
-      image: formData.get('programImage'),
-    }
-
-    console.log(program);
-    // Store the data
-  }
-
   return (
     <main className="w-full h-full flex flex-col gap-4 flex-1 items-center p-4">
       <div className="w-full">

@@ -18,8 +18,8 @@ export const faq = sqliteTable("Faq", {
 export type Faq = typeof faq.$inferSelect;
 
 export const program = sqliteTable("Program", {
-  id: integer("id", { mode: 'number' }).primaryKey({ autoIncrement: true }),
-  image: text("image"),
+  id: integer("id", { mode: 'number' }).primaryKey({ autoIncrement: true }).notNull(),
+  image: text("image").notNull(),
   title: text("title").notNull(),
   description: text("description").notNull(),
 })
